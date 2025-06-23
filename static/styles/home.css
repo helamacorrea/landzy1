@@ -1,0 +1,353 @@
+
+:root {
+    --primary-color: #008277;
+    --background-color: #fafafa;
+    --typeface-color: #1a1a1a;
+    --brighter: #6FF9BF;
+    --middle: #25AF91;
+}
+
+*{
+    font-family: Roboto;
+}
+
+header {
+	background-color: var(--off-white);
+	padding: 20px;
+}
+
+
+.open a {
+    display: block;
+}
+#menu {
+	font-size: 1.5rem;
+	border: 0;
+	background: none;
+	color: #000;
+	position: absolute;
+	top: 1rem;
+	right: 1rem;
+}
+
+#menu::before {
+	content: "☰";
+}
+
+#menu.open::before {
+	content: "✖️";
+}
+
+html, body {
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+    margin: 0;
+    background-color: var(--background-color);
+    color: var(--typeface-color);
+}
+
+nav div {
+	list-style: none;
+	display: none;
+	flex-direction: column;
+}
+
+nav.open div {
+    display: flex;
+}
+
+nav a {
+	display: block;
+	text-align: center;
+	padding: 0.75rem;
+	text-decoration: none;
+    color: var(--typeface-color);
+}
+nav a:hover {
+    font-weight: bold;
+    color: var(--primary-color); /*maybe change to 1a1a1a*/
+}
+.start-now {
+    padding: .55rem;
+    border-radius: 30px;
+    color: white;
+    cursor: pointer;
+    margin-top: 0.75rem;
+    font-weight: bold;
+    background: linear-gradient(135deg, var(--primary-color), #25AF91);
+    border: none;
+    max-width: 100px;
+    align-self: center;
+}
+.start-now:hover {
+    background: linear-gradient(135deg, #25AF91, #6FF9BF);
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+    color: var(--typeface-color);
+}
+
+
+
+main {
+    flex:1;
+}
+
+footer {
+    background-color: var(--primary-color);
+    color: white;
+    text-align: center;
+}
+
+footer div {
+    padding: 1rem; 
+}
+
+.hero {
+  position: relative;
+  display: flex; 
+  justify-content: center;
+  flex-direction: column;
+}
+
+.hero picture img {
+  display: block;
+  width: 100%;
+  height: auto;
+}
+
+.logo-hero {
+  position: absolute;
+  top: 20%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  z-index: 1;
+  min-width: 250px;
+}
+
+.user-question {
+    position: absolute;
+    display: flex;
+    flex-direction: column;
+    top: calc(20% + 120px);
+    left: 50%;
+    transform: translate(-50%, -50%);
+    z-index: 1;
+    width: 70%;
+    height: 120px;
+    justify-content: center;
+    max-width: 500px;
+    min-width: 280px;
+}
+.user-text {
+    min-width: 280px;
+    max-width: 500px;
+    width: 100%;
+    padding: 1rem;
+    height: 120px;
+    border-radius: 30px;
+    border: 1px solid rgba(0, 0, 0, 0.3);
+    resize: none;
+    align-self: center;
+    position: relative;
+    box-sizing: border-box;
+}
+
+.hero-button {
+    position: absolute;
+    width: 40px;
+    height: 40px;
+    border-radius: 20px;
+    right:10px;
+    bottom: 10px;
+    cursor: pointer;
+    border: none;
+}
+
+.hero-button:hover {
+    transform: scale(1.05);    
+}
+
+.hero-button img {
+    margin: -2px -8px;
+}
+
+.numbers {
+    display: flex;
+    flex-direction: column;
+    margin: 0 5%;
+    
+}
+.numbers h1 {
+    text-align: center;
+}
+.numbers h2 {
+    font-size: 50px;
+    margin: 0;
+}
+
+.card {
+    border: 1px solid var(--typeface-color);
+    border-radius: 30px;
+    padding: 1rem;
+    margin: 2%;
+}
+
+.card p {
+    font-size: 22px;
+}
+
+.covered-areas {
+    display: flex;
+    flex-direction: column-reverse;
+    
+
+}
+.covered-areas img {
+    align-self: center;
+    margin-top: 3rem;
+    border-radius: 30px;
+    width: 250px;
+}
+.covered-areas div {
+    padding-right: 0;
+    display: flex;
+    flex-direction: column;
+    min-width: 250px;
+    padding: 0 2rem;
+    align-items: center;
+    text-align: center;
+    
+}
+.covered-areas h2 {
+    margin-bottom: 0;
+    font-size: 32px;
+}
+.covered-areas p {
+    margin-top: 0;
+}
+.covered-areas button {
+    padding: 1rem;
+    font-size: 1rem;
+    max-width: 200px;
+    width: 60%;
+}
+.cta {
+    display: flex;
+    min-height: 300px;
+    height: 10%;
+    margin-top: 0;
+    justify-content: center;
+}
+.cta img {
+    position: absolute;
+    z-index: -1;
+    width: 100%;
+    max-width: 1200px;
+    
+}
+.cta div {
+    position: relative;
+    top: 30%;
+    text-align: center;
+}
+.part-cta {
+    max-width: 200px;
+    padding: 1rem;
+    font-size: 20px;
+    border: 2px solid;
+}
+
+
+
+
+
+@media (min-width: 600px) {
+    header {
+		display: flex;
+		align-items: center;
+		justify-content: space-between;
+        padding: 0 1rem;
+        margin-top: 3px;
+	}
+    nav div {
+        display: flex;
+		justify-content: flex-end;
+		flex-direction: row;
+        align-items: center;
+	}
+    #menu {
+		display: none; /* hide hamburger button */
+	}
+    .start-now {
+        margin: 5px;
+    }
+    .hero img {
+        max-height: 550px;
+    }
+    .logo-hero {
+        position: absolute;
+        top: 30%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        z-index: 1;
+        max-width: 400px;
+    }
+    .user-question {
+        position: absolute;
+        top: calc(30% + 120px);
+        left: 50%;
+        transform: translate(-50%, -50%);
+        z-index: 1;
+    }
+    .numbers {
+        display: grid;
+        grid-template-columns: 1fr 1fr 1fr;
+        margin: 0 6%;
+    }
+    .numbers h1 {
+        grid-column: 1/4;
+    }
+    .covered-areas {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 0%;
+    }
+    .covered-areas img {
+        grid-column: 2/3;
+        width: 35vw;
+        justify-self: center;
+        max-width: 400px;
+        align-self: center;
+        margin-right: 2rem;
+        border-radius: 30px;
+        width: 80%;
+        margin-bottom: 20px;
+    }
+    .covered-areas div {
+        padding: 3rem;
+        padding-right: 0;
+        display: flex;
+        flex-direction: column;
+        min-width: 250px;
+        padding-left: 18%;
+        text-align: left;
+        align-items: flex-start;
+        
+    }
+    .covered-areas h2 {
+        margin-bottom: 0;
+        font-size: 32px;
+    }
+    .covered-areas p {
+        margin-top: 0;
+    }
+    .covered-areas button {
+        padding: 1rem;
+        font-size: 1rem;
+        align-self: flex-start;
+        max-width: 200px;
+        width: 60%;
+    }
+
+
+}

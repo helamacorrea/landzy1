@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en-US">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width">
+    <meta name="description" content="Chat page  of Landzy your AI assistant of real estate">
+    <meta name="author" content="Helamã Verardo Petri Corrêa">
+    <title>Chat Page</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="/static/styles/chat.css">
+  </head>
+  <body>
+    <header>
+        <img class="logo" src="/static/images/landzy-logo.svg" alt="landzy logo" height="30">
+        <nav class="navigation">
+            <div>
+                <a href="/static/home.html">Home</a>
+                <a href="/static/chat.html">Chat</a>
+                <a href="/static/partners.html">Partners</a>
+                <a class="start-now" href="/static/chat.html">Start Now</a>
+            </div>
+        </nav>
+            <button type="button" id="menu"></button>
+    </header>
+      <main>
+        <div class="chat-container">
+            <div id="chat-messages"></div>
+            <div class="input-area">
+                <input class="user-input" type="text" id="userInput" name="off" autocomplete="off" placeholder="I want a property like that...">
+                <button type="button" id="sendButton" onclick="sendMessage()">Send</button>
+            </div>
+        </div>
+      </main>
+    <footer>
+        <div>
+        <p>
+            &copy; <span id="current-year"></span> Helamã Verardo Petri Corrêa, SC/Brazil
+        </p>
+        <p id="last-modified"></p>
+        </div>
+
+        <div id="visitModal" class="visit-modal">
+          <div class="visit-form">
+              <h3>Agendar Visita</h3>
+              <input type="hidden" id="modalPropertyId">
+              <label>Nome:<span class="required"> *</span></label><input type="text" id="visitName" required><br>
+              <label>Email:<span class="required"> *</span></label><input type="email" id="visitEmail" required><br>
+              <label>Telefone:<span class="required"> *</span></label><input type="tel" id="visitPhone" required><br>
+              <label>Data da visita:<span class="required"> *</span></label><input type="date" id="visitDate" required><br>
+              <label>Comentário:<span class="optional"> (Opcional)</span></label> <textarea type="textarea" id="visitComment"></textarea><br><br>
+              <button onclick="submitVisit()">Agendar</button>
+              <button onclick="closeModal()">Cancelar</button>
+          </div>
+        </div>        
+
+    </footer>
+  <script src="/static/scripts/chat.js" defer></script>
+  <script src="/static/scripts/hambMenu.js" defer></script>
+  <script src="/static/scripts/getdates.js" defer></script>
+  </body>
+</html>

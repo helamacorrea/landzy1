@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en-US">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width">
+    <meta name="description" content="Partners page of Landzy your AI assistant of real estate">
+    <meta name="author" content="Helamã Verardo Petri Corrêa">
+    <title>Partners Page</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="styles/partners.css">
+  </head>
+  <body>
+    <header>
+        <img class="logo" src="/static/images/landzy-logo.svg" alt="landzy logo" height="30">
+        <nav class="navigation">
+            <div>
+                <a href="/static/home.html">Home</a>
+                <a href="/static/chat.html">Chat</a>
+                <a href="/static/partners.html">Partners</a>
+                <a class="start-now" href="/static/chat.html">Start Now</a>
+            </div>
+        </nav>
+            <button type="button" id="menu"></button>
+    </header>
+    <main>
+      <h1>Partnership Application Form</h1>
+        <form method="get" action="/static/thanks.html" class="frm">
+            <fieldset>
+              <legend class="ltitle">Real Estate Agency Info</legend>
+              <label class="title">Agency Name <span class="required"> *</span><input type="text" name="agency-name" id="agencyName" required></label>
+              <label class="title">CNPJ <span class="required"> *</span><input type="text" name="cnpj" id="cnpj" required></label>
+              <label class="title">CRECI <span class="required"> *</span><input type="text" name="creci" id="creci" required></label>
+              <label class="title">City<span class="required"> *</span>
+                <select id="productId" name="product" required>
+                    <option value="" disabled selected>Select your City</option>
+                </select>
+              </label>
+            </fieldset>
+            <fieldset>
+              <legend class="ltitle">Comercial Contact</legend>
+              <label class="title">Phone Number <span class="required"> *</span><input type="text" name="phone" id="tel" required></label>
+              <label class="title">E-mail <span class="required"> *</span><input type="text" name="email" id="email" required></label>
+              <label class="title">Website <span class="optional"> (Opcional)</span><input type="text" name="website" id="Website"></label>
+            </fieldset>
+            <fieldset>
+              <legend class="ltitle">Authorization<span class="required"> *</span></legend>
+              <label><input type="checkbox" name="authorization" value="yes" id="authorization" required>I authorize Landzy to publish my agency’s properties on the platform and contact me to complete the registration. I am aware of the commission-based partnership model.</label>
+            </fieldset>
+          <input type="submit" value="Apply">
+        </form>
+    </main>
+    <footer>
+        <div>
+        <p>
+            &copy; <span id="current-year"></span> Helamã Verardo Petri Corrêa, SC/Brazil
+        </p>
+        <p id="last-modified"></p>
+        </div>
+    </footer>
+  <script src="/static/scripts/partners.js" defer></script>  
+  <script src="/static/scripts/hambMenu.js" defer></script>
+  <script src="/static/scripts/getdates.js" defer></script>
+  </body>
+</html>

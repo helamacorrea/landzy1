@@ -1,0 +1,26 @@
+services: 
+
+  waha:
+    image: devlikeapro/waha:latest
+    container_name: gabiia
+    restart: always
+
+    env_file: .env
+    environment:
+      - WAHA_API_KEY=${WAHA_API_KEY}
+      - WAHA_DASHBOARD_USERNAME=admin
+      - WAHA_DASHBOARD_PASSWORD=${WAHA_DASHBOARD_PASSWORD}
+
+    ports:
+      - '3000:3000'
+
+  api:
+    build:
+      context: .
+      dockerfile: Dockerfile.api
+    container_name: wpp_bot_api 
+    ports:
+      - '5000:5000'
+    volumes:
+      - .:/app
+      - ./chroma_data:/app/chroma_data

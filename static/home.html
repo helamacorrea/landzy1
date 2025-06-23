@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="en-US">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width">
+    <meta name="description" content="Home page of Landzy your AI assistant of real estate">
+    <meta name="author" content="Helamã Verardo Petri Corrêa">
+    <title>Home Page</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="/static/styles/home.css">
+  </head>
+  <body>
+    <header>
+        <img class="logo" src="/static/images/landzy-logo.svg" alt="landzy logo" height="30" loading="lazy">
+        <nav class="navigation">
+            <div>
+                <a href="/static/home.html">Home</a>
+                <a href="/static/chat.html">Chat</a>
+                <a href="/static/partners.html">Partners</a>
+                <a class="start-now" href="/static/chat.html">Start Now</a>
+            </div>
+        </nav>
+            <button type="button" id="menu"></button>
+    </header>
+    <main>
+        <div class="hero">
+            <picture>
+                <source srcset="/static/images/hero-img.svg" media="(min-width: 600px)">
+                <img src="/static/images/hero-mobile.svg" alt="Hero Image Landzy" width="566" height="671" loading="lazy">
+            </picture>
+            <img class="logo-hero" src="/static/images/landzy-logo.svg" alt="landzy logo" loading="lazy" width="400">
+            <div class="user-question">
+                <textarea class="user-text" name="userQuestion" id="userQuestion" placeholder="I want a property like that..."></textarea>
+                <button class="hero-button" type="button" id="heroButton"><img src="/static/images/arrow.svg" alt="arrow" loading="lazy" width="40"></button>
+            </div>
+        </div>
+        <div class="numbers">
+            <h1>We have what you want!</h1>
+            <div class="card card1">
+                <h2>1,000+</h2>
+                <p>registered properties</p>
+            </div>
+            <div class="card card2">
+                <h2>11</h2>
+                <p>cities served</p>
+            </div>
+            <div class="card card3">
+                <h2>100+</h2>
+                <p>scheduled visits</p>
+            </div>
+        </div>
+        <div class="covered-areas">
+            <div>
+                <h2>Covered Areas</h2>
+                <p>Our services cover Rio Grande do Sul (RS) and Santa 
+                    Catarina (SC), with a focus on Itapema, SC, and
+                    Farroupilha, RS, which have the highest property 
+                    concentrations.
+                </p>
+                <button class="start-now map-cta" type="button" id="mapCta">Find a Property</button>
+            </div>
+            <img src="/static/images/landzy-map.webp" alt="Map with covered cities" loading="lazy" width="500">
+        </div>
+        <div class="cta">
+            <img src="/static/images/cta-home.webp" loading="lazy" alt="gradient green shape v" width="900">
+            <div>
+                <h1>Advertise with us for free — pay only when you sell.</h1>
+                <button class="start-now part-cta" type="button" id="partCta">Become a Partner</button>
+            </div>
+        </div>
+        
+    </main>
+    <footer>
+        <div>
+        <p>
+            &copy; <span id="current-year"></span> Helamã Verardo Petri Corrêa, SC/Brazil
+        </p>
+        <p id="last-modified"></p>
+        </div>
+    </footer>
+  <script src="/static/scripts/home.js" defer></script>
+  <script src="/static/scripts/hambMenu.js" defer></script>
+  <script src="/static/scripts/getdates.js" defer></script>
+
+  </body>
+</html>
+

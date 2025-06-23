@@ -1,0 +1,19 @@
+h1 {
+    color:#fff;
+    text-align: center;
+    background-color: var(--primary-color);
+    margin: 0;
+    padding: 1rem;
+    text-align: center;
+}
+
+h2 {
+    font-size: 58px;
+    color: var(--primary-color);
+    display: block;
+    text-align: center;
+}
+
+p {
+    text-align: center;
+}

@@ -1,0 +1,125 @@
+
+:root {
+    --primary-color: #008277;
+    --background-color: #fafafa;
+    --typeface-color: #1a1a1a;
+    --brighter: #6FF9BF;
+    --middle: #25AF91;
+}
+
+*{
+    font-family: Roboto;
+}
+
+header {
+	background-color: var(--off-white);
+	padding: 20px;
+}
+
+
+.open a {
+    display: block;
+}
+#menu {
+	font-size: 1.5rem;
+	border: 0;
+	background: none;
+	color: #000;
+	position: absolute;
+	top: 1rem;
+	right: 1rem;
+}
+
+#menu::before {
+	content: "☰";
+}
+
+#menu.open::before {
+	content: "✖️";
+}
+
+html, body {
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+    margin: 0;
+    background-color: var(--background-color);
+}
+
+nav div {
+	list-style: none;
+	display: none;
+	flex-direction: column;
+}
+
+nav.open div {
+    display: flex;
+}
+
+nav a {
+	display: block;
+	text-align: center;
+	padding: 0.75rem;
+	text-decoration: none;
+    color: var(--typeface-color);
+}
+nav a:hover {
+    font-weight: bold;
+    color: var(--primary-color); /*maybe change to 1a1a1a*/
+}
+.start-now {
+    padding: .55rem;
+    border-radius: 6px;
+    color: white;
+    cursor: pointer;
+    margin-top: 0.75rem;
+    font-weight: bold;
+    background: linear-gradient(135deg, var(--primary-color), #25AF91);
+    border: none;
+    max-width: 100px;
+    align-self: center;
+}
+.start-now:hover {
+    background: linear-gradient(135deg, #25AF91, #6FF9BF);
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+    color: var(--typeface-color);
+}
+
+main {
+    flex:1;
+}
+
+
+footer {
+    background-color: var(--primary-color);
+    color: white;
+    text-align: center;
+}
+
+footer div {
+    padding: 1rem; 
+}
+
+
+
+@media (min-width: 650px) {
+    header {
+		display: flex;
+		align-items: center;
+		justify-content: space-between;
+        padding: 0 1rem;
+
+	}
+    nav div {
+        display: flex;
+		justify-content: flex-end;
+		flex-direction: row;
+        align-items: center;
+	}
+    #menu {
+		display: none; /* hide hamburger button */
+	}
+    .start-now {
+        margin: 5px;
+    }
+}
