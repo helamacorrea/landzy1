@@ -112,7 +112,7 @@ def serve_static(filename):
 
 @app.route('/')
 def serve_frontend():
-    return send_from_directory('static', 'chat.html')
+    return send_from_directory('static', 'home.html')
 
 @app.route('/api/chat', methods=['POST'])
 def chat_webhook():
