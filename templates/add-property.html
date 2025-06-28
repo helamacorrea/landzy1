@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en-US">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width">
+    <meta name="description" content="Partners page of Landzy your AI assistant of real estate">
+    <meta name="author" content="Helamã Verardo Petri Corrêa">
+    <title>Adicionar Imóvel</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="/static/styles/partners.css">
+  </head>
+  <body>
+    <header>
+        <img class="logo" src="/static/images/landzy-logo.svg" alt="landzy logo" height="30">
+        <nav class="navigation">
+            <div>
+                <a href="/static/home.html">Home</a>
+                <a href="/static/chat.html">Chat</a>
+                <a href="/static/partners.html">Partners</a>
+                <a class="start-now" href="/static/chat.html">Start Now</a>
+            </div>
+        </nav>
+            <button type="button" id="menu"></button>
+    </header>
+        <main>
+        <h2>Add New Property</h2>
+        <form method="post" action="/partner/property/add" enctype="multipart/form-data">
+            <label>Property Type: <input type="text" name="type" required></label><br>
+            <label>Title: <input type="text" name="title" required></label><br>
+            <label>Description: <textarea name="description" required></textarea></label><br>
+            <label>Price: <input type="number" name="price" required></label><br>
+            <label>City: <input type="text" name="city" required></label><br>
+            <label>Neighborhood: <input type="text" name="neighborhood" required></label><br>
+            <label>Bedrooms: <input type="number" name="bedrooms" required></label><br>
+            <label>Bathrooms: <input type="number" name="bathrooms" required></label><br>
+            <label>Suites: <input type="number" name="suites" required></label><br>
+            <label>Parking Spots: <input type="number" name="parking_spots" required></label><br>
+            <label>Total Area (m²): <input type="number" name="total_area" required></label><br>
+            <label>Built Area (m²): <input type="number" name="built_area" required></label><br>
+            <label>Purpose: <input type="text" name="purpose" required></label><br>
+            <label>Deal Details: <textarea name="deal_details" required></textarea></label><br>
+            <label>Available for Visits: 
+            <select name="available" required>
+                <option value="yes">Yes</option>
+                <option value="no">No</option>
+            </select>
+            </label><br>
+            <label>Photos: <input type="file" name="photos" multiple></label><br>
+            <input type="submit" value="Submit Property">
+        </form>
+        </main>
+    <footer>
+        <div>
+        <p>
+            &copy; <span id="current-year"></span> Helamã Verardo Petri Corrêa, SC/Brazil
+        </p>
+        <p id="last-modified"></p>
+        </div>
+    </footer>
+  <script src="/static/scripts/partners.js" defer></script>  
+  <script src="/static/scripts/hambMenu.js" defer></script>
+  <script src="/static/scripts/getdates.js" defer></script>
+  </body>
+</html>

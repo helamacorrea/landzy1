@@ -169,6 +169,23 @@ h1 {
     border-left: 8px solid var(--primary-color);
 }
 
+.log input:required {
+    border: 1px solid #667;
+}
+.log input:required:valid {
+    border: 1px solid #667;
+}
+
+.login {
+    max-width: 400px;
+}
+
+section {
+    align-self: center;
+    margin: .5rem;
+}
+
+
 .frm input[type="submit"] {
     display: block;
     width: 150px;

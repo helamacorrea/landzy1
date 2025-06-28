@@ -26,7 +26,7 @@
     </header>
     <main>
       <h1>Partnership Application Form</h1>
-        <form method="get" action="/static/thanks.html" class="frm">
+        <form method="post" action="/partner/register" class="frm">
             <fieldset>
               <legend class="ltitle">Real Estate Agency Info</legend>
               <label class="title">Agency Name <span class="required"> *</span><input type="text" name="agency-name" id="agencyName" required></label>
@@ -37,6 +37,7 @@
                     <option value="" disabled selected>Select your City</option>
                 </select>
               </label>
+              <label class="title">Password for login<span class="required"> *</span><input type="password" value="FakePSW" name="password" id="password" required></label>
             </fieldset>
             <fieldset>
               <legend class="ltitle">Comercial Contact</legend>
@@ -46,7 +47,7 @@
             </fieldset>
             <fieldset>
               <legend class="ltitle">Authorization<span class="required"> *</span></legend>
-              <label><input type="checkbox" name="authorization" value="yes" id="authorization" required>I authorize Landzy to publish my agency’s properties on the platform and contact me to complete the registration. I am aware of the commission-based partnership model.</label>
+              <label><input type="checkbox" name="is_authorized" value="yes" id="is_authorized" required>I authorize Landzy to publish my agency’s properties on the platform and contact me to complete the registration. I am aware of the commission-based partnership model.</label>
             </fieldset>
           <input type="submit" value="Apply">
         </form>

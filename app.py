@@ -1,4 +1,4 @@
-from flask import Flask, request, jsonify, send_from_directory
+from flask import Flask, request, jsonify, send_from_directory, redirect, session, render_template
 from datetime import datetime
 from user.user import User
 from bot.agent import AIBot
@@ -10,6 +10,7 @@ from decouple import config
 
 import smtplib
 from email.mime.text import MIMEText
+import psycopg2
 
 
 import json
@@ -101,6 +102,7 @@ def str_para_dict(texto: Union[str, Dict[str, Any]]) -> Dict[str, Any]:
 
 app = Flask(__name__, static_folder='static')
 print('Started LandBase API')
+app.secret_key = config('SESSION_KEY')
 
 # Carrega usuários (se necessário)
 users = User.file_to_object() if hasattr(User, 'file_to_object') else []
@@ -281,6 +283,140 @@ def schedule_visit():
     except Exception as e:
         print(e)
         return jsonify({'status': 'error'}), 500
+    
+
+@app.route('/partner/register', methods=['POST'])
+def register_agency():
+    data = request.form
+
+    try:
+        conn = psycopg2.connect(
+            dbname="landzy",
+            user="landzyuser",
+            password=config('SQL_KEY'),
+            host="localhost"
+        )
+        cur = conn.cursor()
+        cur.execute("""
+            INSERT INTO parceiros (
+                agency_name, cnpj, creci, city, password,
+                phone, email, website, is_authorized
+            ) VALUES (%s, %s, %s, %s, %s, %s, %s, %s, %s)
+        """, (
+            data['agency-name'],
+            data['cnpj'],
+            data['creci'],
+            data['product'],
+            data['password'],
+            data['phone'],
+            data['email'],
+            data.get('website'),
+            data.get('is_authorized') == 'yes'
+        ))
+        print("Authorization checkbox:", request.form.get("is_authorized"))
+        conn.commit()
+        cur.close()
+        conn.close()
+        return redirect("/static/thanks.html")
+
+    except Exception as e:
+        print(f"Erro ao salvar dados do parceiro: {e}")
+        return jsonify({'status': 'error', 'message': str(e)}), 500
+
+@app.route('/partner/login', methods=['POST'])
+def partner_login():
+    data = request.form
+    try:
+        conn = psycopg2.connect(
+            dbname="landzy",
+            user="landzyuser",
+            password=config('SQL_KEY'),
+            host="localhost"
+        )
+        cur = conn.cursor()
+        cur.execute("SELECT id FROM parceiros WHERE email=%s AND password=%s", (data['email'], data['password']))
+        result = cur.fetchone()
+        cur.close()
+        conn.close()
+
+        if result:
+            session['partner_id'] = result[0]
+            return redirect('/partner/dashboard')
+        else:
+            return "Login inválido", 401
+
+    except Exception as e:
+        return jsonify({'status': 'error', 'message': str(e)}), 500
+
+@app.route('/partner/dashboard')
+def partner_dashboard():
+    if 'partner_id' not in session:
+        return redirect('/partner-access.html')
+    return render_template('partner-dashboard.html')
+
+
+@app.route('/partner/property/add')
+def add_property_page():
+    if 'partner_id' not in session:
+        return redirect('/partner-access.html')
+    return render_template('add-property.html')
+
+@app.route('/partner/properties')
+def list_properties_page():
+    if 'partner_id' not in session:
+        return redirect('/partner-access.html')
+    return render_template('list-properties.html')
+
+@app.route('/partner/property/add', methods=['POST'])
+def add_property():
+    if 'partner_id' not in session:
+        return redirect('/partner-access.html')
+
+    data = request.form
+
+    try:
+        conn = psycopg2.connect(
+            dbname="landzy",
+            user="landzyuser",
+            password=config('SQL_KEY'),
+            host="localhost"
+        )
+        cur = conn.cursor()
+        cur.execute("""
+            INSERT INTO imoveis (
+                partner_id, type, title, description, price, city, neighborhood,
+                bedrooms, bathrooms, suites, parking_spots,
+                total_area, built_area, purpose, deal_details,
+                available, photo_paths
+            ) VALUES (%s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s)
+        """, (
+            session['partner_id'],
+            data['type'],
+            data['title'],
+            data['description'],
+            data['price'],
+            data['city'],
+            data['neighborhood'],
+            data.get('bedrooms'),
+            data.get('bathrooms'),
+            data.get('suites'),
+            data.get('parking_spots'),
+            data.get('total_area'),
+            data.get('built_area'),
+            data.get('purpose'),
+            data.get('deal_details'),
+            data.get('available') == 'yes',
+            data.getlist('photo_paths')  # se usar <input name="photo_paths">
+        ))
+        conn.commit()
+        cur.close()
+        conn.close()
+        return redirect('/partner/dashboard')
+    except Exception as e:
+        print("Erro ao salvar imóvel:", e)
+        return jsonify({'status': 'error', 'message': str(e)}), 500
+
+
 
 port = int(os.environ.get("PORT", 10000))
 
