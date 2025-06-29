@@ -11,6 +11,7 @@ from decouple import config
 import smtplib
 from email.mime.text import MIMEText
 import psycopg2
+from werkzeug.utils import secure_filename
 
 
 import json
@@ -367,12 +368,25 @@ def list_properties_page():
         return redirect('/partner-access.html')
     return render_template('list-properties.html')
 
+UPLOAD_FOLDER = 'static/uploads'
+os.makedirs(UPLOAD_FOLDER, exist_ok=True)
+
 @app.route('/partner/property/add', methods=['POST'])
 def add_property():
     if 'partner_id' not in session:
         return redirect('/partner-access.html')
 
     data = request.form
+    files = request.files.getlist('photos')
+
+    saved_paths = []
+    for f in files:
+        if f and f.filename:
+            filename = secure_filename(f.filename)
+            save_path = os.path.join(UPLOAD_FOLDER, filename)
+            f.save(save_path)
+            saved_paths.append(save_path)
+            
 
     try:
         conn = psycopg2.connect(
@@ -406,7 +420,7 @@ def add_property():
             data.get('purpose'),
             data.get('deal_details'),
             data.get('available') == 'yes',
-            data.getlist('photo_paths')  # se usar <input name="photo_paths">
+            json.dumps(saved_paths) 
         ))
         conn.commit()
         cur.close()
@@ -415,6 +429,102 @@ def add_property():
     except Exception as e:
         print("Erro ao salvar imóvel:", e)
         return jsonify({'status': 'error', 'message': str(e)}), 500
+    
+
+@app.route('/partner/properties/data')
+def get_partner_properties():
+    if 'partner_id' not in session:
+        return jsonify([])
+
+    try:
+        conn = psycopg2.connect(
+            dbname="landzy",
+            user="landzyuser",
+            password=config('SQL_KEY'),
+            host="localhost"
+        )
+        cur = conn.cursor()
+        cur.execute("""
+            SELECT id, title, city, price FROM imoveis WHERE partner_id = %s
+        """, (session['partner_id'],))
+        props = cur.fetchall()
+        cur.close()
+        conn.close()
+
+        return jsonify([
+            {'id': i, 'title': t, 'city': c, 'price': p}
+            for i, t, c, p in props
+        ])
+
+    except Exception as e:
+        return jsonify({'error': str(e)})
+
+conn_data = {
+    "dbname": "landzy",
+    "user": "landzyuser",
+    "password": config("SQL_KEY"),
+    "host": "localhost"
+}
+# Ver propriedade
+@app.route('/partner/property/<int:id>')
+def view_property(id):
+    if 'partner_id' not in session:
+        return redirect('/partner-access.html')
+    conn = psycopg2.connect(**conn_data)
+    cur = conn.cursor(cursor_factory=psycopg2.extras.RealDictCursor)
+    cur.execute("SELECT * FROM imoveis WHERE id = %s AND partner_id = %s", (id, session['partner_id']))
+    prop = cur.fetchone()
+    cur.close()
+    conn.close()
+    return render_template("view-property.html", property=prop)
+
+# Editar propriedade
+@app.route('/partner/property/<int:id>/edit', methods=['GET', 'POST'])
+def edit_property(id):
+    if 'partner_id' not in session:
+        return redirect('/partner-access.html')
+    conn = psycopg2.connect(**conn_data)
+    cur = conn.cursor(cursor_factory=psycopg2.extras.RealDictCursor)
+    if request.method == 'POST':
+        form = request.form
+        cur.execute("""
+            UPDATE imoveis SET 
+                type=%s, title=%s, description=%s, price=%s, city=%s, neighborhood=%s,
+                bedrooms=%s, bathrooms=%s, suites=%s, garage_spaces=%s,
+                total_area=%s, built_area=%s, purpose=%s, negotiation_details=%s,
+                available_for_visit=%s
+            WHERE id = %s AND partner_id = %s
+        """, (
+            form['type'], form['title'], form['description'], form['price'], form['city'],
+            form['neighborhood'], form['bedrooms'], form['bathrooms'], form['suites'],
+            form['garage_spaces'], form['total_area'], form['built_area'],
+            form['purpose'], form['negotiation_details'],
+            form.get('available_for_visit') == 'on',
+            id, session['partner_id']
+        ))
+        conn.commit()
+        cur.close()
+        conn.close()
+        return redirect('/partner/properties')
+    else:
+        cur.execute("SELECT * FROM imoveis WHERE id = %s AND partner_id = %s", (id, session['partner_id']))
+        prop = cur.fetchone()
+        cur.close()
+        conn.close()
+        return render_template("edit-property.html", property=prop)
+
+# Excluir propriedade
+@app.route('/partner/property/<int:id>/delete', methods=['POST'])
+def delete_property(id):
+    if 'partner_id' not in session:
+        return redirect('/partner-access.html')
+    conn = psycopg2.connect(**conn_data)
+    cur = conn.cursor()
+    cur.execute("DELETE FROM imoveis WHERE id = %s AND partner_id = %s", (id, session['partner_id']))
+    conn.commit()
+    cur.close()
+    conn.close()
+    return redirect('/partner/properties')
 
 
 

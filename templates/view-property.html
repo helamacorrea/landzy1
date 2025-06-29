@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en-US">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width">
+    <meta name="description" content="Partners page of Landzy your AI assistant of real estate">
+    <meta name="author" content="Helamã Verardo Petri Corrêa">
+    <title>Editar Imóvel</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="/static/styles/partners.css">
+  </head>
+  <body>
+    <header>
+        <img class="logo" src="/static/images/landzy-logo.svg" alt="landzy logo" height="30">
+        <nav class="navigation">
+            <div>
+                <a href="/static/home.html">Home</a>
+                <a href="/static/chat.html">Chat</a>
+                <a href="/static/partners.html">Partners</a>
+                <a class="start-now" href="/static/chat.html">Start Now</a>
+            </div>
+        </nav>
+            <button type="button" id="menu"></button>
+    </header>
+        <main>
+            <h2>{{ property.title }}</h2>
+
+            <p><strong>Tipo:</strong> {{ property.type }}</p>
+            <p><strong>Descrição:</strong> {{ property.description }}</p>
+            <p><strong>Preço:</strong> R$ {{ property.price }}</p>
+            <p><strong>Cidade:</strong> {{ property.city }}</p>
+            <p><strong>Bairro:</strong> {{ property.neighborhood }}</p>
+            <p><strong>Quartos:</strong> {{ property.bedrooms }}</p>
+            <p><strong>Banheiros:</strong> {{ property.bathrooms }}</p>
+            <p><strong>Suítes:</strong> {{ property.suites }}</p>
+            <p><strong>Vagas de garagem:</strong> {{ property.parking_spots }}</p>
+            <p><strong>Metragem total:</strong> {{ property.total_area }} m²</p>
+            <p><strong>Metragem construída:</strong> {{ property.built_area }} m²</p>
+            <p><strong>Finalidade:</strong> {{ property.purpose }}</p>
+            <p><strong>Negociação:</strong> {{ property.deal_details }}</p>
+            <p><strong>Disponível para visitas:</strong> {{ "Sim" if property.available_for_visit else "Não" }}</p>
+
+            {% if property.photos %}
+                <h3>Fotos</h3>
+                {% for photo in property.photos %}
+                <img src="/{{ photo }}" alt="Foto do imóvel" width="200">
+                {% endfor %}
+            {% endif %}
+
+            <p>
+                <a href="/partner/property/{{ property.id }}/edit">Editar</a> |
+                <form method="POST" action="/partner/property/{{ property.id }}/delete" style="display:inline;" onsubmit="return confirm('Tem certeza que deseja excluir?');">
+                <button type="submit">Excluir</button>
+                </form>
+            </p>
+
+            <p><a href="/partner/properties">← Voltar para lista</a></p>
+        </main>
+
+    <footer>
+        <div>
+        <p>
+            &copy; <span id="current-year"></span> Helamã Verardo Petri Corrêa, SC/Brazil
+        </p>
+        <p id="last-modified"></p>
+        </div>
+    </footer>
+  <script src="/static/scripts/hambMenu.js" defer></script>
+  <script src="/static/scripts/getdates.js" defer></script>
+  </body>
+</html>
+
+

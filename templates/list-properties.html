@@ -25,17 +25,42 @@
             <button type="button" id="menu"></button>
     </header>
         <main>
-        <h2>All Your Properties</h2>
-        <ul>
-            {% for prop in properties %}
-            <li>
-                <strong>{{ prop.title }}</strong> — {{ prop.city }} — R$ {{ prop.price }}<br>
-                {{ prop.description }}
-            </li>
-            {% else %}
-            <li>No properties registered yet.</li>
-            {% endfor %}
-        </ul>
+        <h2>Your Properties</h2>
+        <ul id="propertyList"></ul>
+
+        <script>
+        fetch('/partner/properties/data')
+            .then(res => res.json())
+            .then(data => {
+            const list = document.getElementById('propertyList');
+            data.forEach(p => {
+                const li = document.createElement('li');
+                li.innerHTML = `
+                <strong>${p.title}</strong> - ${p.city} - R$ ${p.price}
+                <button onclick="viewProperty(${p.id})">View</button>
+                <button onclick="editProperty(${p.id})">Edit</button>
+                <button onclick="deleteProperty(${p.id})">Delete</button>
+                `;
+                list.appendChild(li);
+            });
+            });
+
+        function viewProperty(id) {
+            window.location.href = `/partner/property/view/${id}`;
+        }
+
+        function editProperty(id) {
+            window.location.href = `/partner/property/edit/${id}`;
+        }
+
+        function deleteProperty(id) {
+            if (confirm('Are you sure you want to delete this property?')) {
+            fetch(`/partner/property/delete/${id}`, { method: 'DELETE' })
+                .then(res => res.json())
+                .then(() => location.reload());
+            }
+        }
+        </script>
         </main>
     <footer>
         <div>
@@ -44,8 +69,7 @@
         </p>
         <p id="last-modified"></p>
         </div>
-    </footer>
-  <script src="/static/scripts/partners.js" defer></script>  
+    </footer>  
   <script src="/static/scripts/hambMenu.js" defer></script>
   <script src="/static/scripts/getdates.js" defer></script>
   </body>

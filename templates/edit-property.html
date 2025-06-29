@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en-US">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width">
+    <meta name="description" content="Partners page of Landzy your AI assistant of real estate">
+    <meta name="author" content="Helamã Verardo Petri Corrêa">
+    <title>Editar Imóvel</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="/static/styles/partners.css">
+  </head>
+  <body>
+    <header>
+        <img class="logo" src="/static/images/landzy-logo.svg" alt="landzy logo" height="30">
+        <nav class="navigation">
+            <div>
+                <a href="/static/home.html">Home</a>
+                <a href="/static/chat.html">Chat</a>
+                <a href="/static/partners.html">Partners</a>
+                <a class="start-now" href="/static/chat.html">Start Now</a>
+            </div>
+        </nav>
+            <button type="button" id="menu"></button>
+    </header>
+        <main>
+        <h2>Edit Property</h2>
+        <form method="POST" enctype="multipart/form-data">
+            <label>Tipo de Imóvel:<input type="text" name="type" value="{{ property.type }}" required></label>
+            <label>Título:<input type="text" name="title" value="{{ property.title }}" required></label>
+            <label>Descrição:<textarea name="description" value="{{ property.description }}"></textarea></label>
+            <label>Preço:<input type="number" name="price" value="{{ property.price }}" required></label>
+            <label>Cidade:<input type="text" name="city" value="{{ property.city }}" required></label>
+            <label>Bairro:<input type="text" name="neighborhood" value="{{ property.neighborhood }}" required></label>
+            <label>Quartos:<input type="number" name="bedrooms" value="{{ property.bedrooms }}"></label>
+            <label>Banheiros:<input type="number" name="bathrooms" value="{{ property.bathrooms }}"></label>
+            <label>Suítes:<input type="number" name="suites" value="{{ property.suites }}"></label>
+            <label>Vagas:<input type="number" name="parking_spots" value="{{ property.parking_spots }}"></label>
+            <label>Metragem Total:<input type="number" name="total_area" value="{{ property.total_area }}"></label>
+            <label>Metragem Construída:<input type="number" name="built_area" value="{{ property.built_area }}"></label>
+            <label>Finalidade:<input type="text" name="purpose" value="{{ property.purpose }}"></label>
+            <label>Detalhes de Negociação:<input type="text" name="deal_details" value="{{ property.deal_details }}"></label>
+            <label>Disponível para Visitas:<input type="checkbox" name="available" {% if property.available_for_visit %}checked{% endif %}></label>
+            <button type="submit">Salvar Alterações</button>
+        </form>
+        </main>
+    <footer>
+        <div>
+        <p>
+            &copy; <span id="current-year"></span> Helamã Verardo Petri Corrêa, SC/Brazil
+        </p>
+        <p id="last-modified"></p>
+        </div>
+    </footer>
+  <script src="/static/scripts/hambMenu.js" defer></script>
+  <script src="/static/scripts/getdates.js" defer></script>
+  </body>
+</html>
+
+
+
+
+
+
+
+
+
