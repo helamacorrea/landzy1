@@ -16,10 +16,10 @@
         <img class="logo" src="/static/images/landzy-logo.svg" alt="landzy logo" height="30">
         <nav class="navigation">
             <div>
-                <a href="/static/home.html">Home</a>
-                <a href="/static/chat.html">Chat</a>
-                <a href="/static/partners.html">Partners</a>
-                <a class="start-now" href="/static/chat.html">Start Now</a>
+                <a href="/static/home.html">Início</a>
+                <a href="/static/partners.html">Anunciar</a>
+                <a href="/static/partner-access.html">Parceiro</a>
+                <a class="start-now" href="/static/chat.html">Encontre seu Imóvel</a>
             </div>
         </nav>
             <button type="button" id="menu"></button>
@@ -29,10 +29,17 @@
           <fieldset>
             <legend class="ltitle">Acesso Imobiliária</legend>
             <label class="title log">E-mail<input type="text" name="email" id="email" required></label>
-            <label class="title log">Password<input type="text" name="password" id="password" required></label>
+            <label class="title log">Password<input type="password" name="password" id="password" required></label>
+            <button type="button" onclick="togglePassword()">Mostrar</button>
             <input type="submit" value="Login">
           </fieldset>
         </form>
+        <script>
+          function togglePassword() {
+            const input = document.getElementById("password");
+            input.type = input.type === "password" ? "text" : "password";
+          }
+        </script>
     </main>
     <footer>
         <div>

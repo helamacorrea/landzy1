@@ -16,38 +16,42 @@
         <img class="logo" src="/static/images/landzy-logo.svg" alt="landzy logo" height="30">
         <nav class="navigation">
             <div>
-                <a href="/static/home.html">Home</a>
-                <a href="/static/chat.html">Chat</a>
-                <a href="/static/partners.html">Partners</a>
-                <a class="start-now" href="/static/chat.html">Start Now</a>
+                <a href="/static/home.html">Início</a>
+                <a href="/static/partners.html">Anunciar</a>
+                <a href="/static/partner-access.html">Parceiro</a>
+                <a class="start-now" href="/static/chat.html">Encontre seu Imóvel</a>
             </div>
         </nav>
             <button type="button" id="menu"></button>
     </header>
     <main>
-      <h1>Partnership Application Form</h1>
+      <h1>Formulário de Aplicação para Parceria de Corretagem</h1>
         <form method="post" action="/partner/register" class="frm">
             <fieldset>
-              <legend class="ltitle">Real Estate Agency Info</legend>
-              <label class="title">Agency Name <span class="required"> *</span><input type="text" name="agency-name" id="agencyName" required></label>
+              <legend class="ltitle">Informações da Imobiliária</legend>
+              <label class="title">Nome da Imobiliária <span class="required"> *</span><input type="text" name="agency-name" id="agencyName" required></label>
               <label class="title">CNPJ <span class="required"> *</span><input type="text" name="cnpj" id="cnpj" required></label>
               <label class="title">CRECI <span class="required"> *</span><input type="text" name="creci" id="creci" required></label>
-              <label class="title">City<span class="required"> *</span>
+              <label class="title">Cidade<span class="required"> *</span>
                 <select id="productId" name="product" required>
                     <option value="" disabled selected>Select your City</option>
                 </select>
               </label>
-              <label class="title">Password for login<span class="required"> *</span><input type="password" value="FakePSW" name="password" id="password" required></label>
+              <label class="title">
+                Senha para Login<span class="required"> *</span>
+                <input type="password" name="password" id="password" required>
+              </label>
+              <button type="button" onclick="togglePassword()">Mostrar</button>
             </fieldset>
             <fieldset>
-              <legend class="ltitle">Comercial Contact</legend>
-              <label class="title">Phone Number <span class="required"> *</span><input type="text" name="phone" id="tel" required></label>
+              <legend class="ltitle">Contato Comercial</legend>
+              <label class="title">WhatsApp/Celular <span class="required"> *</span><input type="text" name="phone" id="tel" required></label>
               <label class="title">E-mail <span class="required"> *</span><input type="text" name="email" id="email" required></label>
               <label class="title">Website <span class="optional"> (Opcional)</span><input type="text" name="website" id="Website"></label>
             </fieldset>
             <fieldset>
-              <legend class="ltitle">Authorization<span class="required"> *</span></legend>
-              <label><input type="checkbox" name="is_authorized" value="yes" id="is_authorized" required>I authorize Landzy to publish my agency’s properties on the platform and contact me to complete the registration. I am aware of the commission-based partnership model.</label>
+              <legend class="ltitle">Autorização<span class="required"> *</span></legend>
+              <label><input type="checkbox" name="is_authorized" value="yes" id="is_authorized" required>Autorizo a Landzy a publicar os imóveis da minha imobiliária na plataforma e a entrar em contato comigo para concluir o cadastro. Estou ciente do modelo de parceria baseado em comissão.</label>
             </fieldset>
           <input type="submit" value="Apply">
         </form>

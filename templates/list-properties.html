@@ -16,10 +16,10 @@
         <img class="logo" src="/static/images/landzy-logo.svg" alt="landzy logo" height="30">
         <nav class="navigation">
             <div>
-                <a href="/static/home.html">Home</a>
-                <a href="/static/chat.html">Chat</a>
-                <a href="/static/partners.html">Partners</a>
-                <a class="start-now" href="/static/chat.html">Start Now</a>
+                <a href="/static/home.html">Início</a>
+                <a href="/static/partners.html">Anunciar</a>
+                <a href="/static/partner-access.html">Parceiro</a>
+                <a class="start-now" href="/static/chat.html">Encontre seu Imóvel</a>
             </div>
         </nav>
             <button type="button" id="menu"></button>
@@ -46,16 +46,16 @@
             });
 
         function viewProperty(id) {
-            window.location.href = `/partner/property/view/${id}`;
+            window.location.href = `/partner/property/${id}`;
         }
 
         function editProperty(id) {
-            window.location.href = `/partner/property/edit/${id}`;
+            window.location.href = `/partner/property/${id}/edit`;
         }
 
         function deleteProperty(id) {
             if (confirm('Are you sure you want to delete this property?')) {
-            fetch(`/partner/property/delete/${id}`, { method: 'DELETE' })
+            fetch(`/partner/property/${id}/delete`, { method: 'POST' })
                 .then(res => res.json())
                 .then(() => location.reload());
             }

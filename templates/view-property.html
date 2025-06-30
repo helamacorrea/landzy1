@@ -16,10 +16,10 @@
         <img class="logo" src="/static/images/landzy-logo.svg" alt="landzy logo" height="30">
         <nav class="navigation">
             <div>
-                <a href="/static/home.html">Home</a>
-                <a href="/static/chat.html">Chat</a>
-                <a href="/static/partners.html">Partners</a>
-                <a class="start-now" href="/static/chat.html">Start Now</a>
+                <a href="/static/home.html">Início</a>
+                <a href="/static/partners.html">Anunciar</a>
+                <a href="/static/partner-access.html">Parceiro</a>
+                <a class="start-now" href="/static/chat.html">Encontre seu Imóvel</a>
             </div>
         </nav>
             <button type="button" id="menu"></button>
@@ -40,7 +40,7 @@
             <p><strong>Metragem construída:</strong> {{ property.built_area }} m²</p>
             <p><strong>Finalidade:</strong> {{ property.purpose }}</p>
             <p><strong>Negociação:</strong> {{ property.deal_details }}</p>
-            <p><strong>Disponível para visitas:</strong> {{ "Sim" if property.available_for_visit else "Não" }}</p>
+            <p><strong>Disponível para visitas:</strong> {{ "Sim" if property.available else "Não" }}</p>
 
             {% if property.photos %}
                 <h3>Fotos</h3>

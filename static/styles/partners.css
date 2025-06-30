@@ -68,7 +68,7 @@ nav a:hover {
     color: var(--primary-color); /*maybe change to 1a1a1a*/
 }
 .start-now {
-    padding: .55rem;
+    padding: .55rem .75rem;
     border-radius: 30px;
     color: white;
     cursor: pointer;
@@ -76,7 +76,7 @@ nav a:hover {
     font-weight: bold;
     background: linear-gradient(135deg, var(--primary-color), #25AF91);
     border: none;
-    max-width: 100px;
+    z-index: 1;
     align-self: center;
 }
 .start-now:hover {
@@ -143,6 +143,7 @@ h1 {
 }
 
 .frm input[type="text"],
+.frm input[type="password"],
 .frm select {
     display: block;
     border: 1px solid var(--typeface-color);

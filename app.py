@@ -27,6 +27,10 @@ import json
 import json
 from typing import Union, Dict, Any
 
+import psycopg2.extras
+
+
+
 def parse_properties(options):
     properties = []
     for option in options:
@@ -490,16 +494,16 @@ def edit_property(id):
         cur.execute("""
             UPDATE imoveis SET 
                 type=%s, title=%s, description=%s, price=%s, city=%s, neighborhood=%s,
-                bedrooms=%s, bathrooms=%s, suites=%s, garage_spaces=%s,
-                total_area=%s, built_area=%s, purpose=%s, negotiation_details=%s,
-                available_for_visit=%s
+                bedrooms=%s, bathrooms=%s, suites=%s, parking_spots=%s,
+                total_area=%s, built_area=%s, purpose=%s, deal_details=%s,
+                available=%s
             WHERE id = %s AND partner_id = %s
         """, (
             form['type'], form['title'], form['description'], form['price'], form['city'],
             form['neighborhood'], form['bedrooms'], form['bathrooms'], form['suites'],
-            form['garage_spaces'], form['total_area'], form['built_area'],
-            form['purpose'], form['negotiation_details'],
-            form.get('available_for_visit') == 'on',
+            form['parking_spots'], form['total_area'], form['built_area'],
+            form['purpose'], form['deal_details'],
+            form.get('available') == 'on',
             id, session['partner_id']
         ))
         conn.commit()

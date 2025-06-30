@@ -16,38 +16,38 @@
         <img class="logo" src="/static/images/landzy-logo.svg" alt="landzy logo" height="30">
         <nav class="navigation">
             <div>
-                <a href="/static/home.html">Home</a>
-                <a href="/static/chat.html">Chat</a>
-                <a href="/static/partners.html">Partners</a>
-                <a class="start-now" href="/static/chat.html">Start Now</a>
+                <a href="/static/home.html">Início</a>
+                <a href="/static/partners.html">Anunciar</a>
+                <a href="/static/partner-access.html">Parceiro</a>
+                <a class="start-now" href="/static/chat.html">Encontre seu Imóvel</a>
             </div>
         </nav>
             <button type="button" id="menu"></button>
     </header>
         <main>
-        <h2>Add New Property</h2>
+        <h2>Adicionar Imóvel</h2>
         <form method="post" action="/partner/property/add" enctype="multipart/form-data">
-            <label>Property Type: <input type="text" name="type" required></label><br>
-            <label>Title: <input type="text" name="title" required></label><br>
-            <label>Description: <textarea name="description" required></textarea></label><br>
-            <label>Price: <input type="number" name="price" required></label><br>
-            <label>City: <input type="text" name="city" required></label><br>
-            <label>Neighborhood: <input type="text" name="neighborhood" required></label><br>
-            <label>Bedrooms: <input type="number" name="bedrooms" required></label><br>
-            <label>Bathrooms: <input type="number" name="bathrooms" required></label><br>
-            <label>Suites: <input type="number" name="suites" required></label><br>
-            <label>Parking Spots: <input type="number" name="parking_spots" required></label><br>
-            <label>Total Area (m²): <input type="number" name="total_area" required></label><br>
-            <label>Built Area (m²): <input type="number" name="built_area" required></label><br>
-            <label>Purpose: <input type="text" name="purpose" required></label><br>
-            <label>Deal Details: <textarea name="deal_details" required></textarea></label><br>
-            <label>Available for Visits: 
+            <label>Tipo de Imóvel: <input type="text" name="type" required></label><br>
+            <label>Titulo: <input type="text" name="title" required></label><br>
+            <label>Descrição: <textarea name="description" required></textarea></label><br>
+            <label>Preço: <input type="number" name="price" required></label><br>
+            <label>Cidade: <input type="text" name="city" required></label><br>
+            <label>Bairro: <input type="text" name="neighborhood" required></label><br>
+            <label>Quartos: <input type="number" name="bedrooms" required></label><br>
+            <label>Banheiros: <input type="number" name="bathrooms" required></label><br>
+            <label>Suítes: <input type="number" name="suites" required></label><br>
+            <label>Vagas de Garagem: <input type="number" name="parking_spots" required></label><br>
+            <label>Área Total (m²): <input type="number" name="total_area" required></label><br>
+            <label>Área Construída (m²): <input type="number" name="built_area" required></label><br>
+            <label>Propósito: <input type="text" name="purpose" required></label><br>
+            <label>Detalhes de Negociação: <textarea name="deal_details" required></textarea></label><br>
+            <label>Disponibilidade para Visitas: 
             <select name="available" required>
-                <option value="yes">Yes</option>
-                <option value="no">No</option>
+                <option value="yes">Sim</option>
+                <option value="no">Não</option>
             </select>
             </label><br>
-            <label>Photos: <input type="file" name="photos" multiple></label><br>
+            <label>Fotos: <input type="file" name="photos" multiple></label><br>
             <input type="submit" value="Submit Property">
         </form>
         </main>
